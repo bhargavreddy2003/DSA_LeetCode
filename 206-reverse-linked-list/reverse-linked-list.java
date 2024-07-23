@@ -10,21 +10,17 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        if (head == null) {
-            return null;     //rreturn if list is empty
+        ListNode temp=head;
+        ListNode prev= null;
+        while(temp!=null){
+            ListNode front= temp.next;
+            
+            temp.next=prev;
+            prev=temp;
+            temp=front;
         }
+        return prev;
+
         
-        ListNode curr = head;
-        ListNode prv = null;
-        
-        while (curr != null) {
-            ListNode currp1 = curr.next;
-            curr.next = prv;                //increment current to next node   swap previous node to current and change link travers till end where current points to null
-            prv = curr;
-            curr = currp1;
-        }
-        
-        head = prv;
-        return head;
     }
 }
