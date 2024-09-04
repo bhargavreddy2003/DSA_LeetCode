@@ -4,10 +4,10 @@ class Solution {
        int r=1;
        int profit;
        int maxProfit=0;
-       while(r<prices.length && l<r){
+       while(r<prices.length){
         profit=prices[r]-prices[l];
         
-       if(prices[r]<prices[l]) {l=r; r=l+1;}
+       if(prices[r]<prices[l]) {l=r; }
 
         else {
             maxProfit= Math.max(maxProfit, profit);
