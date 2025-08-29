@@ -4,14 +4,16 @@ class Solution(object):
     def bfs(self, grid, q, fresh):
         rows, cols = len(grid), len(grid[0])
         time = 0
+        visit=set()
 
         while q:
             r, c, t = q.popleft()
             time = max(time, t)   
             for dr, dc in [(1,0), (-1,0), (0,1), (0,-1)]:
                 nr, nc = r + dr, c + dc
-                if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:
-                    grid[nr][nc] = 2
+                if ( 0 <= nr < rows and 0 <= nc < cols and
+                 grid[nr][nc] == 1 and (nr,nc) not in visit):
+                    visit.add((nr,nc))
                     fresh -= 1
                     q.append((nr, nc, t + 1))
         return -1 if fresh > 0 else time
